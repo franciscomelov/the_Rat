@@ -1,42 +1,33 @@
-Bug report template in markdown:
-
-
 **Title**
-Hidden endpoint exposes client details to all users
+deflected xss attack
 
 **Type of vulnerability**
-Broken Access Control
+dom and 
 
 **Endpoint**
-https://UncleRatsCheeseShop.com/api/v1/getClients
+https://hackxpert.com/ratsite/contacts.php
 
 **Description**
-Users can only view the details of their own clients as intended, however when they make a GET call to /api/v1/getClients, the user can view all the clients in the system.
-This endpoint is normally not available in the UI but we can trigger a call to /api/v2/getClients by clicking the by clicking the "View clients" button.
-The call to this endpoint shows the users own clients as intended.
+By using this pyload in the text input you could pop up a prompt
+By sending this url to another user you could make use oa xss vulnerability
+hackxpert.com/ratsite/contacts.php?searchTerm="<iframe src=javascript:prompt()>
+"<iframe src=javascript:prompt()>
 
 **Steps to reproduce**
-*Requirements*
-1. MiTM proxy such as burp
-2. User with "Salesmen" priviledges
-	2a. Salesman privlidges can only view their own clients
 
 *Steps*
-1. Login to the application
-2. Navigate to clients module
-	2a. Make sure you have the MiTM proxy enabled
-3. Click the "View clients" button
-4. In the MiTM proxy, click the "history" tab and find the call to /api/v2/getClients
-5. Send the request to the repeater and replace the V2 with V1 
-	5a. /api/v2/getClients >>> /api/v1/getClients
-6. Resend the request
+Dom based xss
+1. go to https://hackxpert.com/ratsite/contacts.php
+2. paste this code in the search input "<iframe src=javascript:prompt()>
+3. click search, and you will get a pop up
+
+deflcted based xss
+1. By sending this url to another user
+	hackxpert.com/ratsite/contacts.php?searchTerm="<iframe src=javascript:prompt()>
+to anothet user you clud inject code in their  web browser
+
 
 **Impact**
-attacker can view all the clients, even those that do not belong to him
+Xss attacks could inject malicious code in the browser
 
-**Remidiation**
-Disable the old API endpoint
-
-**Severity**
-High
 
