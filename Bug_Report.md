@@ -1,10 +1,10 @@
-**Title**
-deflected xss attack
+**Title**  
+ xss attack in search bar
 
 **Type of vulnerability**
-dom and 
+dom and deflected atack in search bar
 
-**Endpoint**
+**Endpoint**  
 https://hackxpert.com/ratsite/contacts.php
 
 **Description**
